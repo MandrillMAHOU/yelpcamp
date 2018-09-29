@@ -1,0 +1,46 @@
+/*SHOW PAGE*/
+.thumbnail {
+    transition: all 0.5s;
+    padding: 0;
+}
+
+.thumbnail img {
+    width: 100%;
+}
+
+.thumbnail .caption .name-container {
+    margin: 1rem 0;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.comment-item {
+    margin-bottom: 2rem;
+}
+
+.delete-form {
+    display: inline;
+}
+
+/*FOOTER*/
+.footer-hr {
+    width:80%;
+    margin: 3rem auto 1rem;
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+
+.page-footer {
+    text-align: center;
+}
+
+/*FORMS*/
+textarea {
+    resize: vertical;
+}
+
+/*ALERT MESSAGE*/
+div[role='alert'] {
+    transition: all 0.5s;
+}

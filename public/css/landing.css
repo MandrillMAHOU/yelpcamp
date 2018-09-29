@@ -1,0 +1,24 @@
+body {
+    color: #eee;
+    background-color: #333;
+}
+
+#container {
+    text-align: center;
+    padding-top: 40vh;
+}
+
+#start {
+    margin-top: 2rem;
+}
+
+.background {
+    z-index: -1;
+    position: fixed;
+    top: 0;
+    background: url(/static/background.jpg);
+    background-position: 50% 50%;
+    width: 100%;
+    height: 100%;
+    opacity: 0.7;
+}
