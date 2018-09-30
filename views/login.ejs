@@ -1,7 +1,32 @@
-<% include ./partials/header %>
-<div class="container">
-    <h1 style="text-align: center">Login</h1>
-    <div style="width: 30%; margin: 25px auto;">
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login - YelpCamp</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/css/auth.css">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="/js/main.js"></script>
+    </head>
+<body>
+<!--FLASH MESSAGE-->
+<div class="container message-container">
+    <% if(error && error.length > 0) { %>
+        <div class="alert alert-danger" role="alert">
+            <%= error %>
+        </div>
+    <% } %>
+    <% if(success && success.length > 0) { %>
+    <div class="alert alert-success" role="alert">
+        <%= success %>
+    </div>
+    <% } %>
+</div>
+
+<div class="container main-form">
+    <a class="back" href="/campgrounds"><i class="glyphicon glyphicon-chevron-left" aria-hidden="true"></i> Back</a>
+    <div class="inner-container">
+        <h1 style="text-align: center">Login</h1>
         <form action="/login" method="post">
             <div class="form-group">
                 <input class="form-control" type="text" name="username" placeholder="username">
@@ -10,9 +35,14 @@
                 <input class="form-control" type="password" name="password" placeholder="password">
             </div>
             <div class="form-group">
-                <button class="btn btn-lg btn-primary btn-block">Sign Up</button>
+                <button class="btn btn-lg btn-primary btn-block">Login</button>
             </div>
         </form>  
     </div>
+    <div class="inner-container">
+        <p class="desc">Don't have an account? <a href="/register">Sign up</a></p>
+    </div>
 </div>
-<% include ./partials/footer %> 
+<div class="background"></div>
+</body>
+</html>
