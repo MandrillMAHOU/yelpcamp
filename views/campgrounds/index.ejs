@@ -10,7 +10,10 @@
          </div>
      </header>
      
-     <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+     <div id="gallery" class="row text-center">
+        <% if (campgrounds.length == 0) { %>
+            <h3>No matched campgrounds, please try again.</h3>
+        <% } %>
         <% campgrounds.forEach(function(campground){ %>
             <div class="col-md-3 col-sm-6">
                 <div class="thumbnail">

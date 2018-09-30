@@ -2,12 +2,24 @@ html {
     font-size: 12px;
 }
 
+/*HEADER NAVBAR*/
+nav form button {
+    border-radius: 50% !important;
+}
+
+/*MESSAGE BOX*/
 .message-container {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
     width: 50%;
     top: 1.5rem;
+}
+
+/*CAMPGROUNDS PAGE*/
+#gallery {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 /*SHOW PAGE*/
@@ -49,9 +61,4 @@ html {
 
 .page-footer {
     text-align: center;
-}
-
-/*ALERT MESSAGE*/
-div[role='alert'] {
-    transition: all 0.5s;
 }

@@ -16,8 +16,14 @@ router.get("/", function(req, res) {
 
 //INDEX - show all campgrounds
 router.get("/campgrounds", function(req, res){
+    let searchConditions = {};
+    // console.log("searching:" + req.query.search);
+    if (req.query.search) {
+        let searchRegex = new RegExp(escapeRegex(req.query.search), 'gi');
+        searchConditions["name"] = searchRegex; 
+    }
     // get all camps from db
-    Campground.find({}, function(err, allCampgrounds){
+    Campground.find(searchConditions, function(err, allCampgrounds){
         if (err) {
             console.log(err);
         } else {
@@ -103,3 +109,7 @@ router.delete("/campgrounds/:id", isLoggedIn, campgroundAuthorization, function(
 });
 
 module.exports = router;
+
+function escapeRegex(text) {
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
