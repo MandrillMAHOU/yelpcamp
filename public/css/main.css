@@ -1,4 +1,20 @@
+html {
+    font-size: 12px;
+}
+
+.message-container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    top: 1.5rem;
+}
+
 /*SHOW PAGE*/
+#allmap {
+    height: 600px;
+}
+
 .thumbnail {
     transition: all 0.5s;
     padding: 0;
@@ -33,11 +49,6 @@
 
 .page-footer {
     text-align: center;
-}
-
-/*FORMS*/
-textarea {
-    resize: vertical;
 }
 
 /*ALERT MESSAGE*/
