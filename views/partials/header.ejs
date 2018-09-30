@@ -2,6 +2,15 @@
 <html>
     <head>
         <title>YelpCamp</title>
+        <script type="text/javascript">
+        	(function(){
+        		window.HOST_TYPE = "2";
+        		window.BMap_loadScriptTime = (new Date).getTime();
+        		var script = document.createElement('script');  
+        		script.src = "https://api.map.baidu.com/getscript?v=2.0&ak=n6x1N51pgz1mEG8RNoeYMokdQ6IinrjE";  
+        		document.head.appendChild(script);
+        	})();
+        </script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <link rel="stylesheet" href="/css/main.css">
         <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -17,7 +26,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <% if (!currentUser) { %>
                         <li><a href="/login">Login</a></li>
-                        <li><a href="/register">Sign Up</a></li>
+                        <li><a href="/register">Sign up</a></li>
                     <% } else { %>
                         <li><a href="javascript:;">Welcome: <%= currentUser.username %></a></li>
                         <li><a href="/logout">Logout</a></li>
@@ -27,7 +36,7 @@
         </div>
     </nav>
     <!--FLASH MESSAGE-->
-    <div class="container">
+    <div class="container message-container">
         <% if(error && error.length > 0) { %>
             <div class="alert alert-danger" role="alert">
                 <%= error %>

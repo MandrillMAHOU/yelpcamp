@@ -8,4 +8,7 @@ Mandrill
 3. User is only able to edit and delete self-created camps and comments 
 
 ## New Features:
-1. Flash messages animation
+1. Flash message and disappearing animation
+2. Password format validation
+3. Time display of camp and comment since posted
+4. Baidu Map

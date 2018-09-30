@@ -35,6 +35,7 @@ router.get("/campgrounds/new", isLoggedIn, function(req, res){
 router.post("/campgrounds", isLoggedIn, function(req, res){
     // get data from form and add to campgrounds array
     var name = req.body.name;
+    var location = req.body.location ? req.body.location : "天安门";
     var price = req.body.price;
     var image = req.body.image;
     var desc = req.body.description;
@@ -42,7 +43,7 @@ router.post("/campgrounds", isLoggedIn, function(req, res){
         id: req.user, // uses obj ref, therefore, comment.author.id is stored as on obj ID instead of whole obj
         username: req.user.username
     };
-    var newCampground = {name: name, price: price, image: image, description: desc, author: author};
+    var newCampground = {name: name, location: location, price: price, image: image, description: desc, author: author};
     // create a new campground and save it to db
     Campground.create(newCampground, function(err, newlyCreated){
         if (err) {

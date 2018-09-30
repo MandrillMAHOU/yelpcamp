@@ -48,4 +48,13 @@ middlewares.commentAuthorization = function (req, res, next) {
     });
 }
 
+middlewares.pwValidation = function(req, res, next) {
+    let pw = req.body.password;
+    if (pw.length < 6) {
+        req.flash("error", "Password is invalid");
+        return res.redirect("/register");
+    }
+    next();
+}
+
 module.exports = middlewares;

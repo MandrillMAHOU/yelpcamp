@@ -1,8 +1,11 @@
+require('dotenv').config(); // env variable setting
+
 var express = require("express"),
     expressSession = require("express-session"),
     bodyParser = require("body-parser"),
     flash = require("connect-flash"),
     mongoose = require("mongoose"),
+    moment = require("moment"),
     methodOverride = require("method-override"),
     passport = require("passport"),
     localStrategy = require("passport-local");
@@ -56,5 +59,7 @@ function initSet(req, res, next) {
     res.locals.currentUser = req.user; // currentUser in every page
     res.locals.error = req.flash("error");
     res.locals.success = req.flash("success");
+    res.locals.moment = moment;
+    res.locals.MAP_API = process.env.BAIDUMAP_APIKEY;
     next();
 }
