@@ -1,6 +1,7 @@
 var mongoose = require("mongoose");
 
 var commentSchema = mongoose.Schema({
+    rating: Number,
     text: String,
     created: {
       type: Date,

@@ -9,6 +9,7 @@ nav form button {
 
 /*MESSAGE BOX*/
 .message-container {
+    z-index: 1001 !important;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -23,6 +24,38 @@ nav form button {
 }
 
 /*SHOW PAGE*/
+.rating-container {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.rating-container h3 {
+    color: #aaa;
+}
+
+.rating-inner-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.rating-score {
+    width: 5rem;
+    height: 5rem;
+    line-height: 5rem;
+    text-align: center;
+    border: 2px solid #ddd;
+    border-radius: 50%;
+    font-size: 2.5rem;
+}
+
+.rating-stars {
+    width: 150px;
+    height: 30px;
+    background: url(/static/rating.png);
+}
+
 #allmap {
     height: 600px;
 }

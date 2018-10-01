@@ -34,6 +34,10 @@ router.post("/campgrounds/:id/comments", isLoggedIn, function(req, res){
                 if (err) {
                     console.log(err);
                 } else {
+                    // if no rating provided, default is 10
+                    if (!newComment.rating) {
+                        newComment.rating = 10;
+                    }
                     // add username and id to new comment
                     var author = {
                         id: req.user, // uses obj ref, therefore, comment.author.id is stored as on obj ID instead of whole obj
@@ -42,8 +46,10 @@ router.post("/campgrounds/:id/comments", isLoggedIn, function(req, res){
                     newComment.author = author;
                     newComment.save();
                     foundCampground.comments.push(newComment);
+                    // add rating score to total score
+                    foundCampground.totalRating += newComment.rating;
                     foundCampground.save();
-                     req.flash("success", "Successfully added comment!");
+                    req.flash("success", "Successfully added comment!");
                     res.redirect("/campgrounds/" + foundCampground._id);
                 }
             });
@@ -69,7 +75,16 @@ router.put("/campgrounds/:id/comments/:comment_id", isLoggedIn, commentAuthoriza
        if (err) {
            res.redirect("back");
        } else {
-           res.redirect("/campgrounds/" + req.params.id);
+            Campground.findById(req.params.id, function(err, foundCampground){
+                if (err) {
+                    console.log(err);
+                } else {
+                    foundCampground.totalRating -= updatedComment.rating;
+                    foundCampground.totalRating += Number(req.body.comment.rating);
+                    foundCampground.save();
+                }
+            });
+            res.redirect("/campgrounds/" + req.params.id);
        }
     });
 });
@@ -80,6 +95,14 @@ router.delete("/campgrounds/:id/comments/:comment_id", isLoggedIn, commentAuthor
        if (err) {
            res.redirect("back");
        } else {
+            Campground.findById(req.params.id, function(err, foundCampground){
+                if (err) {
+                    console.log(err);
+                } else {
+                    foundCampground.totalRating -= deletedComment.rating;
+                    foundCampground.save();
+                }
+            });
             req.flash("success", "Comment deleted");
             res.redirect("/campgrounds/" + req.params.id);
        }

@@ -55,6 +55,6 @@ middlewares.pwValidation = function(req, res, next) {
         return res.redirect("/register");
     }
     next();
-}
+};
 
 module.exports = middlewares;
