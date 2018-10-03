@@ -29,7 +29,7 @@
       			        		Free of Charge
       			        	<% } %>
   			        	</span>
-			            <span><a href="javascript:;"><%= campground.name %></a></span>  
+			            <span><%= campground.name %></span>  
 			        </div>
 			        <p><%= campground.description %></p>
 			        <p>
@@ -76,20 +76,24 @@
 	let scoreInt = parseInt(document.querySelector(".rating-score").innerText);
 	let offSet = -(10 - scoreInt) * 30;
 	document.querySelector(".rating-stars").style.backgroundPosition = "0 " + offSet + "px";
+	let colorArr = ["#ed2f2f", "#d86100", "#b28500", "#7e9f00", "#1fb31f", "#1fb31f"];
+	document.querySelector(".rating-score").style.borderColor = colorArr[parseInt(scoreInt / 2)];
 	// Baidu map func
-	while (!BMap) {
+	try {
+		var map = new BMap.Map("allmap");
+	} catch (e) {
 		window.location.reload();
-	}
-	var map = new BMap.Map("allmap");
+	};
 	map.enableScrollWheelZoom();
 	var myGeo = new BMap.Geocoder();
 	myGeo.getPoint("<%= campground.location %>", function(point){
 		if (point) {
 			map.centerAndZoom(point, 16);
-			map.addOverlay(new BMap.Marker(point));
+			var myIcon = new BMap.Icon("/static/basketball.png", new BMap.Size(30,30), {imageSize: new BMap.Size(30,30)});
+			map.addOverlay(new BMap.Marker(point, {icon:myIcon}));
 		}else{
 			console.log("Invalid Location");
 		}
-	}, "杭州市");
+	}, "全国");
 </script>
 <% include ../partials/footer %>

@@ -35,7 +35,7 @@ router.post("/campgrounds/:id/comments", isLoggedIn, function(req, res){
                     console.log(err);
                 } else {
                     // if no rating provided, default is 10
-                    if (!newComment.rating) {
+                    if (newComment.rating == null) {
                         newComment.rating = 10;
                     }
                     // add username and id to new comment
@@ -71,6 +71,9 @@ router.get("/campgrounds/:id/comments/:comment_id/edit", isLoggedIn, commentAuth
 
 // UPDATE COMMENT
 router.put("/campgrounds/:id/comments/:comment_id", isLoggedIn, commentAuthorization, function(req, res){
+    if (req.body.comment.rating == null || req.body.comment.rating == "") {
+        req.body.comment.rating = 10;           
+    }
     Comment.findOneAndUpdate({_id: req.params.comment_id}, req.body.comment, function(err, updatedComment){
        if (err) {
            res.redirect("back");

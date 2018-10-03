@@ -3,8 +3,27 @@ html {
 }
 
 /*HEADER NAVBAR*/
-nav form button {
-    border-radius: 50% !important;
+#search-form {
+    position: relative;
+}
+
+#search-form input {
+    border-radius: 9999px;
+    width: 20rem;
+    transition: width 1s;
+}
+
+#search-form input:focus {
+    width: 30rem;
+}
+
+#search-form button {
+    position: absolute;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
 }
 
 /*MESSAGE BOX*/
@@ -41,11 +60,12 @@ nav form button {
 }
 
 .rating-score {
+    box-sizing: content-box;
     width: 5rem;
     height: 5rem;
     line-height: 5rem;
     text-align: center;
-    border: 2px solid #ddd;
+    border: 0.5rem solid #ddd;
     border-radius: 50%;
     font-size: 2.5rem;
 }

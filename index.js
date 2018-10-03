@@ -19,7 +19,7 @@ var campgroundRoutes = require("./routes/campgrounds"),
     authRoutes = require("./routes/auth");
 
 var seedDB = require("./seeds");
-// seedDB();
+seedDB();
 
 var app = express();
 app.use(bodyParser.urlencoded({extended: true}));

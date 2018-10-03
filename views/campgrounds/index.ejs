@@ -19,7 +19,15 @@
                 <div class="thumbnail">
                    <img src="<%= campground.image %>">
                    <div class="caption">
-                       <h4><%= campground.name %></h4>
+                        <h4><%= campground.name %></h4>
+                        <p>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <% if (campground.location.length <= 10) { %>
+                                 <%= campground.location %>
+                            <% } else { %>
+                                 <%= campground.location.substr(0,10) %>...
+                            <% } %>
+                        </p>
                    </div>
                    <p>
                        <a href="/campgrounds/<%= campground._id %>" class="btn btn-primary">More Info</a>
