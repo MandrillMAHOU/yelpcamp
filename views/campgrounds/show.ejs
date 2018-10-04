@@ -5,14 +5,16 @@
 			<div class="rating-container">
 				<h3><%= campground.name %> rating</h3>
 				<div class="rating-inner-container">
-					<div class="rating-score">
-						<% if (campground.comments.length == 0) { %>
-							<%= 10 %>
-						<% }else { %>
+					<% if (campground.comments.length == 0) { %>
+						<p>
+							No rating yet, leave a comment? <a href="/campgrounds/<%= campground._id %>/comments/new">Click Here</a>
+						</p>
+					<% }else { %>
+						<div class="rating-score">
 							<%= (campground.totalRating / campground.comments.length).toFixed(1) %>
-						<% } %>
-					</div>
-					<div class="rating-stars"></div>
+						</div>
+						<div class="rating-stars"></div>
+					<% } %>
 				</div>
 			</div>
 			<div id="allmap"></div>
@@ -44,8 +46,46 @@
 			    </div>
 			</div>
 			<div class="well">
-			    <div class="text-right">
-			        <a class="btn btn-success" href="/campgrounds/<%= campground._id %>/comments/new">Add New Comment</a>
+			    <div class="text-right pull-right">
+			        <button class="btn btn-success" data-toggle="collapse" data-target="#new-comment-form" aria-expanded="false">
+			        	<i class="fas fa-plus"></i> Add New Comment
+		        	</button>
+			    </div>
+			    <h3><i class="fas fa-comments"></i> <b>Comments</b></h3>
+			    <div class="collapse" id="new-comment-form">
+			    	<div class="container-fluid">
+	    			<% if(!currentUser) { %>
+    					<p style="margin: 0;">Login to leave a comment. <a href="/login">Login</a></p>
+        			<% } else { %>
+        				<h5><i class="fas fa-edit"></i><b> Add New Comment to <%= campground.name %><b></h5>
+			            <form action="/campgrounds/<%= campground._id %>/comments" method="POST">
+			                <div class="form-group">
+			                    <div class="input-group">
+			                        <div class="input-group-addon">Rating:</div>
+			                        <select class="form-control" name="comment[rating]" required>
+			                            <option>0</option>
+			                            <option>1</option>
+			                            <option>2</option>
+			                            <option>3</option>
+			                            <option>4</option>
+			                            <option>5</option>
+			                            <option>6</option>
+			                            <option>7</option>
+			                            <option>8</option>
+			                            <option>9</option>
+			                            <option>10</option>
+			                        </select>
+			                    </div>
+			                </div>
+			                <div class="form-group">
+			                    <textarea class="form-control" type="text" name="comment[text]" placeholder="Leave your comment here..." rows="3" required></textarea>
+			                </div>
+			                <div class="form-group">
+			                    <button class="btn btn-lg btn-success">Comment</button>
+			                </div>
+		            	</form>
+        			<% } %>
+        			</div>
 			    </div>
 			    <hr />
 			    <% campground.comments.forEach(function(comment){ %>
@@ -73,11 +113,13 @@
 </div>
 <script type="text/javascript">
 	// rating stars display
-	let scoreInt = parseInt(document.querySelector(".rating-score").innerText);
-	let offSet = -(10 - scoreInt) * 30;
-	document.querySelector(".rating-stars").style.backgroundPosition = "0 " + offSet + "px";
-	let colorArr = ["#ed2f2f", "#d86100", "#b28500", "#7e9f00", "#1fb31f", "#1fb31f"];
-	document.querySelector(".rating-score").style.borderColor = colorArr[parseInt(scoreInt / 2)];
+	if ("<%= campground.comments.length %>" != 0) {
+		let scoreInt = parseInt(document.querySelector(".rating-score").innerText);
+		let offSet = -(10 - scoreInt) * 30;
+		document.querySelector(".rating-stars").style.backgroundPosition = "0 " + offSet + "px";
+		let colorArr = ["#ed2f2f", "#d86100", "#b28500", "#7e9f00", "#1fb31f", "#1fb31f"];
+		document.querySelector(".rating-score").style.borderColor = colorArr[parseInt(scoreInt / 2)];	
+	}
 	// Baidu map func
 	try {
 		var map = new BMap.Map("allmap");

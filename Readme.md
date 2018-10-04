@@ -13,4 +13,5 @@ Mandrill
 3. Time display of camp and comment since posted
 4. Baidu Map
 5. In app fuzzy search
-6. Rating system added!
+6. **Rating system added**
+7. **User can add comment on the show page** 

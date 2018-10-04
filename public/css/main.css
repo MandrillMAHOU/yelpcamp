@@ -51,6 +51,7 @@ html {
 
 .rating-container h3 {
     color: #aaa;
+    margin-bottom: 2rem;
 }
 
 .rating-inner-container {
@@ -75,6 +76,14 @@ html {
     height: 30px;
     background: url(/static/rating.png);
 }
+
+/*collapse new comment form*/
+#new-comment-form {
+    border-left: 5px solid #00C851;
+    /*padding-left: 2rem;*/
+    margin-top: 2rem;
+}
+
 
 #allmap {
     height: 600px;
